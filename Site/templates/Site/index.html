@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'site/styles.css' %}" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Database</h1>
+        <form action="{% url 'add' %}" method="POST" role="form">
+            <div>
+                {% csrf_token %}
+                <span>Title:</span>{{ form.Title}}<br>
+                <span>Year:</span>{{ form.Year}}<br>
+                <span>Rating:</span>{{ form.Rating}}<br>
+                <button>Indsend</button>
+            </div>
+        </form>
+    </div>
+    <br><br><br>
+    <div>
+        <table cellspacing="0">
+            <tr>
+                <th id="Col1">Title</th>
+                <th id="Col2">Year</th>
+                <th id="Col3">Rating</th>
+            </tr>
+            {% for Site in Site_list %}
+            <tr>
+                <td>{{ Site.Title }}</td>
+                <td>{{ Site.Year }}</td>
+                <td>{{ Site.Rating }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
